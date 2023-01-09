@@ -6,12 +6,12 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>842</width>
-    <height>529</height>
+    <width>804</width>
+    <height>610</height>
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Игра "Жизнь"</string>
+   <string>Игра &quot;Жизнь&quot;</string>
   </property>
   <widget class="QWidget" name="centralwidget">
    <layout class="QGridLayout" name="gridLayout_2">
@@ -174,19 +174,6 @@
          </spacer>
         </item>
         <item alignment="Qt::AlignHCenter">
-         <widget class="QLabel" name="generationCountInfo">
-          <property name="font">
-           <font>
-            <family>Trebuchet MS</family>
-            <pointsize>14</pointsize>
-           </font>
-          </property>
-          <property name="text">
-           <string>Поколение: 0</string>
-          </property>
-         </widget>
-        </item>
-        <item alignment="Qt::AlignHCenter">
          <widget class="QPushButton" name="startOrStopEvolvingButton">
           <property name="font">
            <font>
@@ -198,43 +185,6 @@
            <string>Начать</string>
           </property>
          </widget>
-        </item>
-        <item>
-         <layout class="QHBoxLayout" name="generationSpeedLayout">
-          <item>
-           <widget class="QLabel" name="fastestSpeedInfo">
-            <property name="font">
-             <font>
-              <family>Trebuchet MS</family>
-              <pointsize>14</pointsize>
-             </font>
-            </property>
-            <property name="text">
-             <string>Быстро</string>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QSlider" name="generationSpeedSlider">
-            <property name="orientation">
-             <enum>Qt::Horizontal</enum>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QLabel" name="slowestSpeedInfo">
-            <property name="font">
-             <font>
-              <family>Trebuchet MS</family>
-              <pointsize>14</pointsize>
-             </font>
-            </property>
-            <property name="text">
-             <string>Медленно</string>
-            </property>
-           </widget>
-          </item>
-         </layout>
         </item>
         <item>
          <spacer name="controlVerticalSpacer3">
@@ -249,15 +199,16 @@
           </property>
          </spacer>
         </item>
-        <item alignment="Qt::AlignHCenter">
-         <widget class="QLabel" name="signature">
-          <property name="font">
-           <font>
-            <family>Trebuchet MS</family>
-           </font>
-          </property>
+        <item>
+         <widget class="QPushButton" name="aboutButton">
           <property name="text">
-           <string>© 2020 Li-Wei Yap</string>
+           <string>Об игре</string>
+          </property>
+          <property name="default">
+           <bool>false</bool>
+          </property>
+          <property name="flat">
+           <bool>false</bool>
           </property>
          </widget>
         </item>

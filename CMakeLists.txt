@@ -22,6 +22,10 @@ set(PROJECT_SOURCES
         gridwidget.h
         gridwidget.cpp
         gamelogic.cpp
+        aboutwindow.cpp
+        aboutwindow.h
+        aboutwindow.ui
+        assets.qrc
 )
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
