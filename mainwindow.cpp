@@ -117,6 +117,9 @@ void MainWindow::setSaveLoadButtons() {
 }
 // Функция сохранения игры
 void MainWindow::saveGame() {
+  grid->stopEvolve();
+  editStartOrStopEvolvingButtonHelper("Начать");
+  grid->setDoEvolve(false);
   QString fileName = QFileDialog::getSaveFileName(
       this, tr("Сохранить игру"), QDir::currentPath(),
       tr("Файлы игры (*.game)"));  // Открытие диалогового окна с выбором
