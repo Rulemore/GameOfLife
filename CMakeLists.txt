@@ -25,6 +25,9 @@ set(PROJECT_SOURCES
         aboutwindow.cpp
         aboutwindow.h
         aboutwindow.ui
+        aboutauthor.h
+        aboutauthor.cpp
+        aboutauthor.ui
         assets.qrc
 )
 

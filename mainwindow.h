@@ -4,6 +4,7 @@
 #include <QMainWindow>
 #include <QPainter>
 
+#include "aboutauthor.h"
 #include "aboutwindow.h"
 #include "gridwidget.h"
 QT_BEGIN_NAMESPACE
@@ -24,16 +25,17 @@ class MainWindow : public QMainWindow {
   void setRowCountInfo(const int &value);
   void resetGrid(GridWidget::cellPopulationOption pattern);
   void editStartOrStopEvolvingButton();
+  void on_aboutButton_clicked();
+  void on_authorButton_clicked();
 
  private:
   Ui::MainWindow *ui;  // Создание указателя типа MainWindow
   GridWidget *grid;  // Создание указателя типа GridWidget
   AboutWindow *aboutWindow;  // Создание указателя типа AboutWindow
-
+  AboutAuthor *authorWindow;  // Создание указателя типа AboutAuthorWindow
   void setStartOrStopEvolvingButton();
   void editStartOrStopEvolvingButtonHelper(const QString &text);
   void setLayout();
-  void on_aboutButton_clicked();
   void setColumnCountSlider();
   void setRowCountSlider();
   void setRandomGridButton();

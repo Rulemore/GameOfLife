@@ -32,7 +32,7 @@
           </property>
          </spacer>
         </item>
-        <item alignment="Qt::AlignHCenter">
+        <item>
          <widget class="QLabel" name="liveCellColourInfo">
           <property name="styleSheet">
            <string notr="true">font: 22pt &quot;Trebuchet MS&quot;;</string>
@@ -45,7 +45,7 @@
           </property>
          </widget>
         </item>
-        <item alignment="Qt::AlignHCenter">
+        <item>
          <widget class="QLabel" name="deadCellColourInfo">
           <property name="styleSheet">
            <string notr="true">font: 22pt &quot;Trebuchet MS&quot;;</string>
@@ -58,7 +58,7 @@
           </property>
          </widget>
         </item>
-        <item alignment="Qt::AlignHCenter">
+        <item>
          <widget class="QLabel" name="clickInfo">
           <property name="styleSheet">
            <string notr="true">font: 22pt &quot;Trebuchet MS&quot;;</string>
@@ -173,7 +173,7 @@
           </property>
          </spacer>
         </item>
-        <item alignment="Qt::AlignHCenter">
+        <item>
          <widget class="QPushButton" name="startOrStopEvolvingButton">
           <property name="font">
            <font>
@@ -200,17 +200,22 @@
          </spacer>
         </item>
         <item>
-         <widget class="QPushButton" name="aboutButton">
-          <property name="text">
-           <string>Об игре</string>
-          </property>
-          <property name="default">
-           <bool>false</bool>
-          </property>
-          <property name="flat">
-           <bool>false</bool>
-          </property>
-         </widget>
+         <layout class="QHBoxLayout" name="aboutButtons">
+          <item alignment="Qt::AlignHCenter">
+           <widget class="QPushButton" name="aboutButton">
+            <property name="text">
+             <string>Об игре</string>
+            </property>
+           </widget>
+          </item>
+          <item alignment="Qt::AlignHCenter">
+           <widget class="QPushButton" name="authorButton">
+            <property name="text">
+             <string>Об авторе</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
         </item>
         <item>
          <spacer name="controlVerticalSpacer4">

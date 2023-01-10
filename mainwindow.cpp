@@ -1,5 +1,6 @@
 #include "mainwindow.h"
 
+#include <aboutauthor.h>
 #include <gridwidget.h>
 
 #include "./ui_mainwindow.h"
@@ -95,11 +96,18 @@ void MainWindow::resetGrid(GridWidget::cellPopulationOption pattern) {
   grid->createGrid(pattern);
   grid->update();
 }
-// Функция установки кнопки "О программе"
+
+// Функция нажатия кнопки "О программе"
 void MainWindow::on_aboutButton_clicked() {
   aboutWindow = new AboutWindow(this);
   aboutWindow->show();
 }
+// Функция нажатия кнопки "Об авторе"
+void MainWindow::on_authorButton_clicked() {
+  authorWindow = new AboutAuthor(this);
+  authorWindow->show();
+}
+
 // Функция изменения значения количества строк в интерфейсе
 void MainWindow::setRowCountInfo(const int &nRows) {
   int newStrLen = snprintf(NULL, 0, "Количество строк: %d", nRows) + 1;
