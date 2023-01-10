@@ -36,6 +36,11 @@
          <layout class="QHBoxLayout" name="saveLoadLayout">
           <item>
            <widget class="QPushButton" name="saveButton">
+            <property name="font">
+             <font>
+              <pointsize>14</pointsize>
+             </font>
+            </property>
             <property name="text">
              <string>Сохранить игру</string>
             </property>
@@ -43,6 +48,11 @@
           </item>
           <item>
            <widget class="QPushButton" name="loadButton">
+            <property name="font">
+             <font>
+              <pointsize>14</pointsize>
+             </font>
+            </property>
             <property name="text">
              <string>Загрузить игру</string>
             </property>
@@ -54,7 +64,7 @@
          <widget class="QLabel" name="rowCountSliderInfo">
           <property name="font">
            <font>
-            <family>Trebuchet MS</family>
+            <family>Segoe UI</family>
             <pointsize>14</pointsize>
            </font>
           </property>
@@ -77,7 +87,7 @@
          <widget class="QLabel" name="columnCountSliderInfo">
           <property name="font">
            <font>
-            <family>Trebuchet MS</family>
+            <family>Segoe UI</family>
             <pointsize>14</pointsize>
            </font>
           </property>
@@ -102,7 +112,7 @@
            <widget class="QPushButton" name="emptyGridButton">
             <property name="font">
              <font>
-              <family>Trebuchet MS</family>
+              <family>Segoe UI</family>
               <pointsize>14</pointsize>
              </font>
             </property>
@@ -115,7 +125,7 @@
            <widget class="QPushButton" name="randomGridButton">
             <property name="font">
              <font>
-              <family>Trebuchet MS</family>
+              <family>Segoe UI</family>
               <pointsize>14</pointsize>
              </font>
             </property>
@@ -143,7 +153,7 @@
          <widget class="QPushButton" name="startOrStopEvolvingButton">
           <property name="font">
            <font>
-            <family>Trebuchet MS</family>
+            <family>Segoe UI</family>
             <pointsize>27</pointsize>
            </font>
           </property>
@@ -169,6 +179,11 @@
          <layout class="QHBoxLayout" name="aboutButtons">
           <item alignment="Qt::AlignHCenter">
            <widget class="QPushButton" name="aboutButton">
+            <property name="font">
+             <font>
+              <pointsize>12</pointsize>
+             </font>
+            </property>
             <property name="text">
              <string>Об игре</string>
             </property>
@@ -176,6 +191,11 @@
           </item>
           <item alignment="Qt::AlignHCenter">
            <widget class="QPushButton" name="authorButton">
+            <property name="font">
+             <font>
+              <pointsize>12</pointsize>
+             </font>
+            </property>
             <property name="text">
              <string>Об авторе</string>
             </property>

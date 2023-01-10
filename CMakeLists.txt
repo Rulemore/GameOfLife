@@ -26,7 +26,7 @@ set(PROJECT_SOURCES
         aboutauthor.h
         aboutauthor.cpp
         aboutauthor.ui
-        assets.qrc
+        resources.qrc
 
 )
 
