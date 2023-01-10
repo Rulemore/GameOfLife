@@ -2,8 +2,6 @@ cmake_minimum_required(VERSION 3.5)
 
 project(kursovaya VERSION 0.1 LANGUAGES CXX)
 
-set(CMAKE_INCLUDE_CURRENT_DIR ON)
-
 set(CMAKE_AUTOUIC ON)
 set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTORCC ON)
@@ -29,6 +27,7 @@ set(PROJECT_SOURCES
         aboutauthor.cpp
         aboutauthor.ui
         assets.qrc
+
 )
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)

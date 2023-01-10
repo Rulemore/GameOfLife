@@ -1,7 +1,7 @@
 #include "mainwindow.h"
 
-#include <aboutauthor.h>
-#include <gridwidget.h>
+#include "aboutauthor.h"
+#include "gridwidget.h"
 
 #include <QFileDialog>
 #include <QMessageBox>
@@ -124,7 +124,6 @@ void MainWindow::saveGame() {
       this, tr("Сохранить игру"), QDir::currentPath(),
       tr("Файлы игры (*.game)"));  // Открытие диалогового окна с выбором
                                    // директории сохрания и именем файла
-  fileName += ".game";  // Добавление расширения к имени файла
   if (fileName.isEmpty()) {
     return;
   } else {
