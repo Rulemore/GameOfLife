@@ -47,6 +47,16 @@ void GridWidget::evolveOnce() {
 bool GridWidget::getDoEvolve() { return doEvolve; }
 // Установить состояние игры
 void GridWidget::setDoEvolve(bool value) { doEvolve = value; }
+// Получения состояния клетки игрового поля
+int GridWidget::getCellState(const int& columnIndex, const int& rowIndex) {
+  return grid[columnIndex][rowIndex];
+}
+
+// Установка состояния клетки игрового поля
+void GridWidget::setCellState(const int& columnIndex, const int& rowIndex,
+                              const int& state) {
+  grid[columnIndex][rowIndex] = state;
+}
 // Начать/остановить игру
 void GridWidget::toggleEvolveDecision() {
   doEvolve = !doEvolve;
@@ -73,7 +83,7 @@ void GridWidget::createEmptyGrid() {
     std::fill(grid[rowIdx], grid[rowIdx] + columnCount, 0);
   }
 }
-// Функция создания поля с рандомными значениями
+// Функция создания поля с рандомными заполнением
 void GridWidget::createRandomGrid() {
   grid = new int*[rowCount];
   for (int rowIdx = 0; rowIdx < rowCount; ++rowIdx) {
@@ -87,7 +97,7 @@ void GridWidget::createRandomGrid() {
 
 // Удаление массива с клетками из памяти
 void GridWidget::deleteGrid() {
-  for (int rowIdx = 0; rowIdx < rowCount; ++rowIdx) {
+  for (int rowIdx = 0; rowIdx < rowCount; rowIdx++) {
     delete[] grid[rowIdx];
   }
   delete[] grid;

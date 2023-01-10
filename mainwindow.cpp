@@ -3,6 +3,9 @@
 #include <aboutauthor.h>
 #include <gridwidget.h>
 
+#include <QFileDialog>
+#include <QMessageBox>
+
 #include "./ui_mainwindow.h"
 
 MainWindow::MainWindow(QWidget *parent)
@@ -10,7 +13,7 @@ MainWindow::MainWindow(QWidget *parent)
   ui->setupUi(this);
   ui->gridLayout->addWidget(grid);
   setLayout();
-
+  setSaveLoadButtons();
   setStartOrStopEvolvingButton();
   setColumnCountSlider();
   setRowCountSlider();
@@ -106,6 +109,72 @@ void MainWindow::on_aboutButton_clicked() {
 void MainWindow::on_authorButton_clicked() {
   authorWindow = new AboutAuthor(this);
   authorWindow->show();
+}
+// Функция установки кнопок сохранения и загрузки
+void MainWindow::setSaveLoadButtons() {
+  connect(ui->saveButton, SIGNAL(clicked()), this, SLOT(saveGame()));
+  connect(ui->loadButton, SIGNAL(clicked()), this, SLOT(loadGame()));
+}
+// Функция сохранения игры
+void MainWindow::saveGame() {
+  QString fileName = QFileDialog::getSaveFileName(
+      this, tr("Сохранить игру"), QDir::currentPath(),
+      tr("Файлы игры (*.game)"));  // Открытие диалогового окна с выбором
+                                   // директории сохрания и именем файла
+  fileName += ".game";  // Добавление расширения к имени файла
+  if (fileName.isEmpty()) {
+    return;
+  } else {
+    QFile file(fileName);
+    if (!file.open(QIODevice::WriteOnly)) {
+      QMessageBox::information(this, tr("Невозможно открыть файл"),
+                               file.errorString());
+      return;
+    }
+    QDataStream out(&file);
+    out.setVersion(QDataStream::Qt_5_9);
+    out << grid->getColumnCount() << grid->getRowCount();
+    for (int i = 0; i < grid->getColumnCount(); i++) {
+      for (int j = 0; j < grid->getRowCount(); j++) {
+        out << grid->getCellState(i, j);
+      }
+    }
+  }
+}
+// Функция загрузки игры
+void MainWindow::loadGame() {
+  grid->stopEvolve();
+  editStartOrStopEvolvingButtonHelper("Начать");
+  grid->setDoEvolve(false);
+
+  QString fileName = QFileDialog::getOpenFileName(
+      this, tr("Загрузить игру"), QDir::currentPath(),
+      tr("Файлы игры (*.game)"));  // Открытие диалогового окна с выбором файла
+  if (fileName.isEmpty()) {
+    return;
+  } else {
+    QFile file(fileName);
+    if (!file.open(QIODevice::ReadOnly)) {
+      QMessageBox::information(this, tr("Невозможно открыть файл"),
+                               file.errorString());
+      return;
+    }
+    QDataStream in(&file);
+    in.setVersion(QDataStream::Qt_5_9);
+    int columnCount, rowCount;
+    in >> columnCount >> rowCount;
+    ui->rowCountSlider->setValue(rowCount);
+    ui->columnCountSlider->setValue(columnCount);
+    grid->createGrid(grid->Empty);
+    for (int i = 0; i < grid->getColumnCount(); i++) {
+      for (int j = 0; j < grid->getRowCount(); j++) {
+        int state;
+        in >> state;
+        grid->setCellState(i, j, state);
+      }
+      grid->update();
+    }
+  }
 }
 
 // Функция изменения значения количества строк в интерфейсе

@@ -27,6 +27,8 @@ class MainWindow : public QMainWindow {
   void editStartOrStopEvolvingButton();
   void on_aboutButton_clicked();
   void on_authorButton_clicked();
+  void saveGame();
+  void loadGame();
 
  private:
   Ui::MainWindow *ui;  // Создание указателя типа MainWindow
@@ -40,5 +42,6 @@ class MainWindow : public QMainWindow {
   void setRowCountSlider();
   void setRandomGridButton();
   void setEmptyGridButton();
+  void setSaveLoadButtons();
 };
 #endif
