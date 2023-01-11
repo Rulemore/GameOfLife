@@ -48,14 +48,14 @@ bool GridWidget::getDoEvolve() { return doEvolve; }
 // Установить состояние игры
 void GridWidget::setDoEvolve(bool value) { doEvolve = value; }
 // Получения состояния клетки игрового поля
-int GridWidget::getCellState(const int& columnIndex, const int& rowIndex) {
-  return grid[columnIndex][rowIndex];
+int GridWidget::getCellState(const int& rowIndex, const int& columnIndex) {
+  return grid[rowIndex][columnIndex];
 }
 
 // Установка состояния клетки игрового поля
-void GridWidget::setCellState(const int& columnIndex, const int& rowIndex,
+void GridWidget::setCellState(const int& rowIndex, const int& columnIndex,
                               const int& state) {
-  grid[columnIndex][rowIndex] = state;
+ grid[rowIndex][columnIndex] = state;
 }
 // Начать/остановить игру
 void GridWidget::toggleEvolveDecision() {

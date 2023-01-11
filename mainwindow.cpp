@@ -136,8 +136,8 @@ void MainWindow::saveGame() {
     QDataStream out(&file);
     out.setVersion(QDataStream::Qt_5_9);
     out << grid->getColumnCount() << grid->getRowCount();
-    for (int i = 0; i < grid->getColumnCount(); i++) {
-      for (int j = 0; j < grid->getRowCount(); j++) {
+    for (int i = 0; i < grid->getRowCount(); i++) {
+      for (int j = 0; j < grid->getColumnCount(); j++) {
         out << grid->getCellState(i, j);
       }
     }
@@ -168,8 +168,8 @@ void MainWindow::loadGame() {
     ui->rowCountSlider->setValue(rowCount);
     ui->columnCountSlider->setValue(columnCount);
     grid->createGrid(grid->Empty);
-    for (int i = 0; i < grid->getColumnCount(); i++) {
-      for (int j = 0; j < grid->getRowCount(); j++) {
+    for (int i = 0; i < grid->getRowCount(); i++) {
+      for (int j = 0; j < grid->getColumnCount(); j++) {
         int state;
         in >> state;
         grid->setCellState(i, j, state);
