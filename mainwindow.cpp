@@ -53,7 +53,7 @@ void MainWindow::editStartOrStopEvolvingButtonHelper(const QString &text) {
 // Функция установки сладера для количества столбцов
 void MainWindow::setColumnCountSlider() {
   ui->columnCountSlider->setMaximum(100);
-  ui->columnCountSlider->setMinimum(10);
+  ui->columnCountSlider->setMinimum(1);
   ui->columnCountSlider->setValue(20);
   ui->columnCountSlider->setTickPosition(QSlider::TicksBelow);
 
@@ -67,7 +67,7 @@ void MainWindow::setColumnCountSlider() {
 // Функция установки сладера для количества строк
 void MainWindow::setRowCountSlider() {
   ui->rowCountSlider->setMaximum(100);
-  ui->rowCountSlider->setMinimum(10);
+  ui->rowCountSlider->setMinimum(1);
   ui->rowCountSlider->setValue(20);
   ui->rowCountSlider->setTickPosition(QSlider::TicksBelow);
 
@@ -174,7 +174,6 @@ void MainWindow::loadGame() {
         in >> state;
         grid->setCellState(i, j, state);
       }
-      grid->update();
     }
   }
 }
