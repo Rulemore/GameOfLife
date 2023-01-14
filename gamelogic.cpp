@@ -10,7 +10,9 @@ int neighbourSum(int** grid, const int& rowCount, const int& columnCount,
       sum += grid[y][x] & 1;
     }
   }
-  return sum -= grid[rowIdx][columnIdx] & 1;
+  return sum -= grid[rowIdx][columnIdx] & 1; // Вычитаем из суммы соседей
+                                             // клетку, для которой считаем
+                                             // соседей
 }
 // Фукнция для вычисления следующего поколения
 void evolveNextGeneration(int** grid, const int& rowCount,
@@ -19,11 +21,12 @@ void evolveNextGeneration(int** grid, const int& rowCount,
     for (int columnIdx = 0; columnIdx < columnCount; columnIdx++) {
       int ns = neighbourSum(grid, rowCount, columnCount, rowIdx, columnIdx);
       if ((ns | grid[rowIdx][columnIdx]) == 3) {
-        grid[rowIdx][columnIdx] |= 2;
+        grid[rowIdx][columnIdx] |= 2; // Если соседей 2 или 3, то клетка
+                                      // остается живой
       }
     }
   }
-
+// Переносим состояние клетки в следующее поколение
   for (int rowIdx = 0; rowIdx < rowCount; ++rowIdx) {
     for (int columnIdx = 0; columnIdx < columnCount; ++columnIdx) {
       grid[rowIdx][columnIdx] >>= 1;

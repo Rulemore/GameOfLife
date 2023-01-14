@@ -4,31 +4,29 @@
 #include <QPainter>
 #include <QWidget>
 
-namespace Ui {
+namespace Ui { // Используется для доступа к элементам интерфейса
 class GridWidget;
 }
-
+// Класс игровного поля
+// Наследуется от QWidget
 class GridWidget : public QWidget {
-  Q_OBJECT
-  Q_PROPERTY(int rowCount READ getRowCount WRITE setRowCount DESIGNABLE true)
-  Q_PROPERTY(
-      int columnCount READ getColumnCount WRITE setColumnCount DESIGNABLE true)
-
+  Q_OBJECT //  Макрос для поддержки сигналов и слотов
  public:
-  GridWidget(QWidget* parent = nullptr);
-  ~GridWidget();
-  int getCellState(const int& columnIndex, const int& rowIndex);
+  GridWidget(QWidget* parent = nullptr);  // Конструктор
+  ~GridWidget(); // Деструктор
+  int getCellState(const int& columnIndex, const int& rowIndex); // Получение
+                                                                  // состояния
+                                                                  // клетки
   void setCellState(const int& columnIndex, const int& rowIndex,
-                    const int& state);
-  void deleteGrid();
-  int getRowCount() const;
-  int getColumnCount() const;
-  bool getDoEvolve();
-  void setDoEvolve(bool value);
+                    const int& state); // Установка состояния клетки
+  void deleteGrid(); // Удаление поля
+  int getRowCount() const; // Получение количества строк
+  int getColumnCount() const; // Получение количества столбцов
+  bool getDoEvolve(); // Получение состояния автоматической эволюции
+  void setDoEvolve(bool value); // Установка состояния автоматической эволюции
   enum cellPopulationOption {
     Empty,
     Random,
-    FromFile,
   };  // Типы заполнения поля
 
  protected:
@@ -38,10 +36,11 @@ class GridWidget : public QWidget {
       QMouseEvent* event) override;  // Переопределние метода обработки нажатий
 
  public slots:
-  void createGrid(cellPopulationOption pattern);
-  void stopEvolve();
-  void setRowCount(const int& nRows);
-  void setColumnCount(const int& nColumns);
+  void createGrid(cellPopulationOption pattern); // Создание поля по заданному
+                                                  // шаблону
+  void stopEvolve(); // Остановка автоматической эволюции
+  void setRowCount(const int& nRows); // Установка количества строк
+  void setColumnCount(const int& nColumns); // Установка количества столбцов
 
  signals:
   void universeSizeAdjustable(
@@ -55,9 +54,9 @@ class GridWidget : public QWidget {
   bool doEvolve =
       false;  // Переменная для хранения состояния автоматической эволюции
 
-  void setTimer();
+  void setTimer(); // Установка таймера
 
-  void evolveContinuous();
+  void evolveContinuous(); // Автоматическая эволюция
 
   QColor universeBorderColour = "#202020";  // Цвет границы поля
   qreal universeBorderThickness = 5.0;  // Толщина границы поля
@@ -65,19 +64,19 @@ class GridWidget : public QWidget {
   QColor cellFieldColour = Qt::black;      // Цвет клетки
   qreal cellGridMargin = 1.0;  // Отступ сетки клеток
 
-  qreal calcUniverseWidth();
-  qreal calcUniverseHeight();
-  qreal calcCellWidth();
-  qreal calcCellHeight();
+  qreal calcUniverseWidth(); // Расчет ширины поля  в пикселях
+  qreal calcUniverseHeight(); // Расчет высоты поля в пикселях
+  qreal calcCellWidth(); // Расчет ширины клетки в пикселях
+  qreal calcCellHeight(); // Расчет высоты клетки в пикселях
 
-  void paintUniverseBorder(QPainter& painter);
-  void paintCellGrid(QPainter& painter);
+  void paintUniverseBorder(QPainter& painter); // Отрисовка границы поля
+  void paintCellGrid(QPainter& painter); // Отрисовка сетки клеток
 
-  void createEmptyGrid();
-  void createRandomGrid();
+  void createEmptyGrid(); // Создание пустого поля
+  void createRandomGrid(); // Создание поля с рандомным заполнением
  private slots:
-  void toggleEvolveDecision();
-  void evolveOnce();
+  void toggleEvolveDecision(); // Переключение состояния автоматической
+                                // эволюции
+  void evolveOnce(); // Однократная эволюция
 };
-
 #endif

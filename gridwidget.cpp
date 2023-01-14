@@ -1,4 +1,3 @@
-
 #include "gridwidget.h"
 
 #include <qpainter.h>
@@ -9,14 +8,15 @@
 
 #include "gamelogic.h"
 
+// Конструктор класса GridWidget
 GridWidget::GridWidget(QWidget* parent) : QWidget(parent) {
-  setTimer();
+  setTimer(); // Установка таймера
   createGrid(Empty);
 }
-
+// Деструктор класса GridWidget
 GridWidget::~GridWidget() {}
 
-// Функция установки таймера
+//Установки таймера
 void GridWidget::setTimer() {
   timer = new QTimer(this);  // Создание таймера
   timer->setInterval(200);  // Установка интервала таймера
@@ -26,22 +26,24 @@ void GridWidget::setTimer() {
 
 // Продолжить игру
 void GridWidget::evolveContinuous() {
-  timer->start();
-  emit universeSizeAdjustable(false);
-  this->setAttribute(Qt::WA_TransparentForMouseEvents, true);
+  timer->start(); // Запуск таймера
+  emit universeSizeAdjustable(false); // Отключение возможности изменения размера поля
+  this->setAttribute(Qt::WA_TransparentForMouseEvents, true); // Отключение возможности
+                                                              //взаимодействия с полем
 }
 
 // Остановка игры
 void GridWidget::stopEvolve() {
-  timer->stop();
-  emit universeSizeAdjustable(true);
-  this->setAttribute(Qt::WA_TransparentForMouseEvents, false);
+  timer->stop(); // Остановка таймера
+  emit universeSizeAdjustable(true); // Включение возможности изменения размера поля
+  this->setAttribute(Qt::WA_TransparentForMouseEvents, false); // Включение возможности
+                                                               //взаимодействия с полем
 }
 
 // 1-кратное обновление поля
 void GridWidget::evolveOnce() {
-  evolveNextGeneration(grid, rowCount, columnCount);
-  update();
+  evolveNextGeneration(grid, rowCount, columnCount); // Вызов функции обновления поля
+  update(); // Обновление поля
 }
 // Получить состояние игры
 bool GridWidget::getDoEvolve() { return doEvolve; }
@@ -60,14 +62,14 @@ void GridWidget::setCellState(const int& rowIndex, const int& columnIndex,
 // Начать/остановить игру
 void GridWidget::toggleEvolveDecision() {
   doEvolve = !doEvolve;
-
   if (doEvolve) {
     evolveContinuous();
   } else {
     stopEvolve();
   }
 }
-// Функция заполнения игрового поля по паттерну
+
+//Заполнения игрового поля по паттерну
 void GridWidget::createGrid(cellPopulationOption pattern) {
   if (pattern == Empty) {
     createEmptyGrid();
@@ -75,7 +77,8 @@ void GridWidget::createGrid(cellPopulationOption pattern) {
     createRandomGrid();
   }
 }
-// Функция создания пустого поля
+
+//Создание пустого поля
 void GridWidget::createEmptyGrid() {
   grid = new int*[rowCount];
   for (int rowIdx = 0; rowIdx < rowCount; ++rowIdx) {
@@ -83,7 +86,8 @@ void GridWidget::createEmptyGrid() {
     std::fill(grid[rowIdx], grid[rowIdx] + columnCount, 0);
   }
 }
-// Функция создания поля с рандомными заполнением
+
+//Создание поля с рандомными заполнением
 void GridWidget::createRandomGrid() {
   grid = new int*[rowCount];
   for (int rowIdx = 0; rowIdx < rowCount; ++rowIdx) {
@@ -104,6 +108,7 @@ void GridWidget::deleteGrid() {
 }
 // Получение количества строк
 int GridWidget::getRowCount() const { return rowCount; }
+
 // Установка количества строк
 void GridWidget::setRowCount(const int& nRows) {
   deleteGrid();
@@ -124,29 +129,31 @@ void GridWidget::setColumnCount(const int& nColumns) {
 void GridWidget::mousePressEvent(QMouseEvent* event) {
   int rowIdx = static_cast<int>(std::floor(
       (event->y() - 0.75 * universeBorderThickness) / calcCellHeight()));
+       // Вычисление индекса строки
   int columnIdx = static_cast<int>(std::floor(
-      (event->x() - 0.75 * universeBorderThickness) / calcCellWidth()));
-  grid[rowIdx][columnIdx] ^= 1;
+      (event->x() - 0.75 * universeBorderThickness) / calcCellWidth())); 
+      // Вычисление индекса столбца
+  grid[rowIdx][columnIdx] ^= 1; // Инвертирование состояния клетки
   update();
 }
 
-// Функция отрисовки игрового поля
+//Отрисовкв игрового поля
 void GridWidget::paintEvent(QPaintEvent* event) {
-  QPainter painter(this);
-  paintUniverseBorder(painter);
-  paintCellGrid(painter);
+  QPainter painter(this); // Создание объекта отрисовщика
+  paintUniverseBorder(painter); // Отрисовка рамки игрового поля
+  paintCellGrid(painter); // Отрисовка клеток
 }
 
-// Функция отрисовки рамки игрового поля
+//Отрисовка рамки игрового поля
 void GridWidget::paintUniverseBorder(QPainter& painter) {
-  QRect universeBorder(0, 0, width(), height());
-  painter.setBrush(QBrush(universeFieldColour));
-  painter.fillRect(universeBorder, painter.brush());
+  QRect universeBorder(0, 0, width(), height()); // Рамка игрового поля
+  painter.setBrush(QBrush(universeFieldColour)); // Цвет заливки
+  painter.fillRect(universeBorder, painter.brush()); // Заливка игрового поля
   painter.setPen(QPen(universeBorderColour, universeBorderThickness));
-  painter.drawRect(universeBorder);
+  painter.drawRect(universeBorder); // Рисование рамки
 }
 
-// Функция отрисовки клеток
+//Отрисовка клеток
 void GridWidget::paintCellGrid(QPainter& painter) {
   for (int rowIdx = 0; rowIdx < rowCount; ++rowIdx) {
     for (int columnIdx = 0; columnIdx < columnCount; ++columnIdx) {
@@ -167,10 +174,8 @@ void GridWidget::paintCellGrid(QPainter& painter) {
 
 // Набор функций для расчета размера игрового поля и клеток
 qreal GridWidget::calcUniverseWidth() {
-  return width() - 1.5 * universeBorderThickness;
-}
+  return width() - 1.5 * universeBorderThickness;}
 qreal GridWidget::calcUniverseHeight() {
-  return height() - 1.5 * universeBorderThickness;
-}
+  return height() - 1.5 * universeBorderThickness;}
 qreal GridWidget::calcCellWidth() { return calcUniverseWidth() / columnCount; }
 qreal GridWidget::calcCellHeight() { return calcUniverseHeight() / rowCount; }
