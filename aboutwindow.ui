@@ -6,9 +6,15 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>775</width>
-    <height>390</height>
+    <width>760</width>
+    <height>534</height>
    </rect>
+  </property>
+  <property name="maximumSize">
+   <size>
+    <width>760</width>
+    <height>534</height>
+   </size>
   </property>
   <property name="windowTitle">
    <string>Об игре</string>
@@ -19,7 +25,7 @@
      <x>20</x>
      <y>20</y>
      <width>720</width>
-     <height>340</height>
+     <height>496</height>
     </rect>
    </property>
    <layout class="QVBoxLayout" name="verticalLayout">
@@ -28,6 +34,12 @@
     </property>
     <item>
      <widget class="QLabel" name="label_2">
+      <property name="maximumSize">
+       <size>
+        <width>718</width>
+        <height>494</height>
+       </size>
+      </property>
       <property name="font">
        <font>
         <pointsize>14</pointsize>
@@ -42,7 +54,13 @@
 
  Если клетка имеет четырех или более соседей, она погибает от перенаселения.
 
- В любой пустой позиции, у которой ровно три соседа, в следующем поколении появляется новая клетка. </string>
+ В любой пустой позиции, у которой ровно три соседа, в следующем поколении появляется новая клетка.
+
+Черные клетки - живые.
+
+Белые Клетки - мертвые.
+
+Нажмите для клетку для изменения.</string>
       </property>
       <property name="wordWrap">
        <bool>true</bool>
